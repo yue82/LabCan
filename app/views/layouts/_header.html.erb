@@ -1,6 +1,6 @@
 <% if logged_in? %>
   <% provide(:username, @user.name) %>
-  <% provide(:main_path, room_path) %>
+  <% provide(:main_path, users_path) %>
 <% else %>
   <% provide(:main_path, root_path) %>
 <% end %>
