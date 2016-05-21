@@ -178,7 +178,7 @@ input {
   }
 }
 
-.checkbox {
+5C.checkbox {
   margin-top: -10px;
   margin-bottom: 10px;
   span {
