@@ -17,3 +17,4 @@
 /tmp
 
 /config/mail_settings.yml
+/public/uploads/*
