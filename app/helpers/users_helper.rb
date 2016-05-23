@@ -7,4 +7,7 @@ module UsersHelper
     image_tag(gravatar_url, alt: user.name, class: "gravatar")
   end
 
+  def icon_for(user)
+    user.user_icon.url || '/default/user_icon.jpg'
+  end
 end
