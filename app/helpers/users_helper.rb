@@ -10,4 +10,9 @@ module UsersHelper
   def icon_for(user)
     user.user_icon.url || '/default/user_icon.jpg'
   end
+
+  def name_for(user)
+    user.name || 'Guest'
+  end
+
 end
