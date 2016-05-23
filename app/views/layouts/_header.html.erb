@@ -1,5 +1,5 @@
 <% if logged_in? %>
-  <% provide(:username, @user.name) %>
+  <% provide(:username, name_for(@user)) %>
   <% provide(:main_path, users_path) %>
 <% else %>
   <% provide(:main_path, root_path) %>

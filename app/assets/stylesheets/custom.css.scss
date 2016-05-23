@@ -201,6 +201,14 @@ input {
   li {
     overflow: auto;
     padding: 10px 0;
-    border-bottom: 1px solid $gray-lighter;
   }
+}
+
+.user-block {
+  margin-bottom: 20px;
+}
+
+.user-block p{
+  display:inline-block;
+  vertical-align:middle;
 }

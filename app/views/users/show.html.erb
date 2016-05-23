@@ -3,9 +3,20 @@
   <aside class="col-md-4">
     <section class="user_info">
       <h1>
-	<%= image_tag icon_for(@user), size: '80' %>
         <%= @user.name %>
       </h1>
+      <%= image_tag icon_for(@user), size: '80' %>
+
+      <%= @user.comment %>
+      <br>
+      <br>
+
+      <% if current_user?(@user) %>
+	<%= render "comment_form" %>
+      <% else %>
+	<%= @user.comment %>
+      <% end %>
+      
     </section>
   </aside>
 </div>
