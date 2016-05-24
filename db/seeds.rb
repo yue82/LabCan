@@ -13,6 +13,8 @@ User.create!(name:  "Example User",
              admin: true,
              activated: true,
              activated_at: Time.zone.now)
+Attendance.create!(attend: false)
+
 
 10.times do |n|
   name  = Faker::Name.name
@@ -24,4 +26,5 @@ User.create!(name:  "Example User",
                password_confirmation: password,
                activated: true,
                activated_at: Time.zone.now)
+  Attendance.create!(attend: false)
 end

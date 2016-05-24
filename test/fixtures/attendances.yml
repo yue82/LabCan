@@ -1,0 +1,15 @@
+michael:
+  attend: false
+
+archer:
+  attend: false
+
+lana:
+  attend: false
+
+mallory:
+  attend: false
+
+<% 10.times do |n| %>
+  attend: false
+<% end %>
