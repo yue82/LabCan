@@ -12,7 +12,7 @@ module UsersHelper
   end
 
   def name_for(user)
-    user.name || 'Guest'
+    logged_in? ? user.name : 'Guest'
   end
 
 end
