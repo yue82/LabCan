@@ -1,15 +1,16 @@
 Rails.application.routes.draw do
-  get 'password_resets/new'
-
-  get 'password_resets/edit'
-
-  get 'sessions/new'
-
   root            'static_pages#home'
   get    'signup' => 'users#new'
   get    'login'  => 'sessions#new'
   post   'login'  => 'sessions#create'
   delete 'logout' => 'sessions#destroy'
+
+  namespace :api, { format: 'json' } do
+    namespace :v1 do
+      get    'labin' => 'attendances#new'
+      delete 'labout' => 'attendances#destroy'
+    end
+  end
 
   resources :users
   resources :account_activations, only: [:edit]

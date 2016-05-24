@@ -15,9 +15,9 @@ ActiveRecord::Schema.define(version: 20160524111454) do
 
   create_table "attendances", force: :cascade do |t|
     t.integer  "user_id"
-    t.boolean  "attend"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.boolean  "attend",     default: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
   end
 
   create_table "users", force: :cascade do |t|

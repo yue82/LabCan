@@ -11,6 +11,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
+      Attendance.new(user_id: @user.id).save
       @user.send_activation_email
       flash[:info] = "Please check your email to activate your account."
       redirect_to root_url
@@ -44,7 +45,9 @@ class UsersController < ApplicationController
 
   def destroy
     @user = User.find(params[:id])
+    @attendance = @user.attendance
     @user.destroy
+    @attendance.destroy
     flash[:success] = "\"" + @user.name + "\" deleted"
     redirect_to users_url
   end
