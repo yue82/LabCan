@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :logged_out_user, only: [:new, :create]
   before_action :logged_in_user, only: [:show, :edit, :update, :index, :destroy]
   before_action :correct_user, only: [:edit, :update]
   before_action :admin_user, only: :destroy
@@ -65,6 +66,12 @@ class UsersController < ApplicationController
       store_location
       flash[:danger] = "Please log in."
       redirect_to login_path
+    end
+  end
+
+  def logged_out_user
+    if logged_in?
+      redirect_to users_url
     end
   end
 
