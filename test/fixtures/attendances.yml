@@ -1,15 +1,9 @@
-michael:
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 1
   attend: false
 
-archer:
+two:
+  user_id: 1
   attend: false
-
-lana:
-  attend: false
-
-mallory:
-  attend: false
-
-<% 10.times do |n| %>
-  attend: false
-<% end %>

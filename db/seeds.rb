@@ -13,7 +13,6 @@ User.create!(name:  "Example User",
              admin: true,
              activated: true,
              activated_at: Time.zone.now)
-Attendance.create!(attend: false)
 
 
 10.times do |n|
@@ -26,5 +25,4 @@ Attendance.create!(attend: false)
                password_confirmation: password,
                activated: true,
                activated_at: Time.zone.now)
-  Attendance.create!(attend: false)
 end
