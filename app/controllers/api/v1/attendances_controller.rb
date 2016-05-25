@@ -9,7 +9,7 @@ module Api
             msg = { msg: "Welcom to Lab" }
             user.attendance.checkin
           else
-            msg = { msg: "Already checked in." }
+            msg = { msg: "Already checked in" }
           end
         else
           msg = { msg: "Bad user or token" }
@@ -24,7 +24,7 @@ module Api
             msg = { msg: "Goodbye" }
             user.attendance.checkout
           else
-            msg = { msg: "Already checked out." }
+            msg = { msg: "Already checked out" }
           end
         else
           msg = { msg: "Bad user or token" }
