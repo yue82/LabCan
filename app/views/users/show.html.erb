@@ -15,6 +15,11 @@
 	<%= render "comment_form" %>
         <br>
         <p>Your check in token: <%= @user.check_token %></p>
+        <%= form_for(@user) do |f| %>
+          <%= render 'shared/error_messages' %>
+          <%= f.hidden_field :check_token, class: 'form-control' %>
+          <%= f.submit 'Update token', class: "btn btn-primary" %>
+          <% end %>
       <% else %>
 	<%= @user.comment %>
       <% end %>
