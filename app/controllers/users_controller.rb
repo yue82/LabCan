@@ -31,6 +31,13 @@ class UsersController < ApplicationController
       @user.update_check_token
       flash[:success] = "Token updated"
       redirect_to @user
+    elsif user_params[:comment]
+      if @user.update_attributes(user_params)
+        flash[:success] = "Comment updated"
+        redirect_to @user
+      else
+        render 'show'
+      end
     elsif @user.update_attributes(user_params)
       flash[:success] = "Profile updated"
       redirect_to @user
