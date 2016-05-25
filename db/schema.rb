@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160524111454) do
+ActiveRecord::Schema.define(version: 20160525072256) do
 
   create_table "attendances", force: :cascade do |t|
     t.integer  "user_id"
@@ -35,6 +35,8 @@ ActiveRecord::Schema.define(version: 20160524111454) do
     t.datetime "reset_sent_at"
     t.string   "user_icon"
     t.string   "comment"
+    t.string   "check_digest"
+    t.string   "check_token"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

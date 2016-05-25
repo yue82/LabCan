@@ -7,8 +7,8 @@ Rails.application.routes.draw do
 
   namespace :api, { format: 'json' } do
     namespace :v1 do
-      get    'labin' => 'attendances#new'
-      delete 'labout' => 'attendances#destroy'
+      get    'checkin' => 'attendances#new'
+      get    'checkout' => 'attendances#destroy'
     end
   end
 

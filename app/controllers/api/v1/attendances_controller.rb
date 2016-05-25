@@ -3,28 +3,35 @@ module Api
     class AttendancesController < ApplicationController
 
       def new
-        user = User.find(params[:id])
+        user = User.find_by(check_token: params[:token])
         if user && user.activated?
-          if correct_token?(user, params[:token])
-            if !user.attendance.attend
-              msg = { msg: "Welcom to Lab" }
-              user.attendance.labin
-            else
-              msg = { msg: "Already in Lab" }
-            end
+          if !user.attendance.attend
+            msg = { msg: "Welcom to Lab" }
+            user.attendance.checkin
           else
-            msg = { msg: "Bad Token" }
+            msg = { msg: "Already checked in." }
           end
         else
-          msg = { msg: "Bad user" }
+          msg = { msg: "Bad user or token" }
         end
-          render json: msg
+        render json: msg
       end
 
-      private
-      def correct_token?(user, token)
-        true
+      def destroy
+        user = User.find_by(check_token: params[:token])
+        if user && user.activated?
+          if user.attendance.attend
+            msg = { msg: "Goodbye" }
+            user.attendance.checkout
+          else
+            msg = { msg: "Already checked out." }
+          end
+        else
+          msg = { msg: "Bad user or token" }
+        end
+        render json: msg
       end
+
     end
   end
 end

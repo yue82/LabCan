@@ -13,10 +13,11 @@
 
       <% if current_user?(@user) %>
 	<%= render "comment_form" %>
+        <br>
+        <p>Your check in token: <%= @user.check_token %></p>
       <% else %>
 	<%= @user.comment %>
       <% end %>
-      
     </section>
   </aside>
 </div>
