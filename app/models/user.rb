@@ -12,6 +12,7 @@ class User < ActiveRecord::Base
   mount_uploader :user_icon, UserIconUploader
   validate :user_icon_size
   validates :comment, length: { maximum: 255 }
+  has_one :attendance
 
   def User.digest(string)
     cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
@@ -53,6 +54,9 @@ class User < ActiveRecord::Base
     update_attribute(:reset_sent_at, Time.zone.now)
   end
 
+  def update_check_token
+    update_attribute(:check_token, User.new_token)
+  end
 
   def send_password_reset_email
     UserMailer.password_reset(self).deliver_now

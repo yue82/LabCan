@@ -11,7 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160523053751) do
+ActiveRecord::Schema.define(version: 20160525072256) do
+
+  create_table "attendances", force: :cascade do |t|
+    t.integer  "user_id"
+    t.boolean  "attend",     default: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "name"
@@ -28,6 +35,8 @@ ActiveRecord::Schema.define(version: 20160523053751) do
     t.datetime "reset_sent_at"
     t.string   "user_icon"
     t.string   "comment"
+    t.string   "check_digest"
+    t.string   "check_token"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

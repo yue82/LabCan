@@ -1,13 +1,9 @@
 <% if logged_in? %>
   <% provide(:username, name_for(@user)) %>
-  <% provide(:main_path, users_path) %>
-<% else %>
-  <% provide(:main_path, root_path) %>
 <% end %>
-
 <header class="navbar navbar-fixed-top navbar-inverse">
   <div class="container">
-    <%= link_to "LabCan", yield(:main_path), id: "logo" %>
+    <%= link_to "LabCan", root_path, id: "logo" %>
     <nav>
       <ul class="nav navbar-nav navbar-right pull-right">
         <% if logged_in? %>
