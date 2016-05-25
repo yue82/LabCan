@@ -52,7 +52,6 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @attendance = @user.attendance
     @user.destroy
-    @attendance.destroy
     flash[:success] = "\"" + @user.name + "\" deleted"
     redirect_to users_url
   end
