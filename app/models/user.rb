@@ -1,3 +1,4 @@
+require 'length_with_wide_char_validator'
 class User < ActiveRecord::Base
   attr_accessor :remember_token, :activation_token, :reset_token
   before_save   :downcase_email
@@ -11,7 +12,7 @@ class User < ActiveRecord::Base
   validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
   mount_uploader :user_icon, UserIconUploader
   validate :user_icon_size
-  validates :comment, length: { maximum: 255 }
+  validates :comment, length_with_wide_char: { maximum: 30 }
   has_one :attendance
 
   def User.digest(string)
