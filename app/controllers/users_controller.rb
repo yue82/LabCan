@@ -48,11 +48,14 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @user_comment = @user.comment
   end
 
   def index
     @users = User.where(activated: true)
     @user = current_user
+    @user_num = User.where(activated: true).count
+    @checkin_num = Attendance.where(attend: true).count
   end
 
   def destroy
@@ -64,6 +67,7 @@ class UsersController < ApplicationController
   end
 
   def checkin
+    store_prev_location
     @user = current_user
     status, res = @user.attendance.checkin
     flash[status] = res[:msg]
@@ -71,16 +75,19 @@ class UsersController < ApplicationController
   end
 
   def checkout
+    store_prev_location
     @user = current_user
     status, res = @user.attendance.checkout
+    if status == :success
+      announce_last(last_one_user)
+    end
     flash[status] = res[:msg]
     redirect_back_or users_url
   end
 
-
   private
   def user_params
-    params.require(:user).permit(:name, :email,
+    params.require(:user).permit(:name, :email,:slack_channel,
                                  :password, :password_confirmation,
                                  :user_icon, :comment, :check_token)
   end

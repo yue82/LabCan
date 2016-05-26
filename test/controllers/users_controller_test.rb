@@ -3,7 +3,9 @@ require 'test_helper'
 class UsersControllerTest < ActionController::TestCase
   def setup
     @user = users(:michael)
+    @user.attendance = attendances(:michael)
     @other_user = users(:archer)
+    @other_user.attendance = attendances(:archer)
   end
 
   test "should redirect index when not logged in" do

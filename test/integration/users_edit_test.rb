@@ -4,6 +4,7 @@ class UsersEditTest < ActionDispatch::IntegrationTest
 
   def setup
     @user = users(:michael)
+    @user.attendance = attendances(:michael)
   end
 
   test "unsuccessful edit" do
@@ -12,6 +13,7 @@ class UsersEditTest < ActionDispatch::IntegrationTest
     assert_template 'users/edit'
     patch user_path(@user), user: { name:  "",
                                     email: "foo@invalid",
+                                    slack_channel: "@test",
                                     password:              "foo",
                                     password_confirmation: "bar" }
     assert_template 'users/edit'
@@ -25,6 +27,7 @@ class UsersEditTest < ActionDispatch::IntegrationTest
     email = "foo@bar.com"
     patch user_path(@user), user: { name:  name,
                                     email: email,
+                                    slack_channel: "@test",
                                     password:              "",
                                     password_confirmation: "" }
     assert_not flash.empty?

@@ -2,20 +2,23 @@
 <div class="row">
   <aside class="col-md-4">
     <section class="user_info">
-      <h1>
-        <%= @user.name %>
-      </h1>
-      <%= image_tag icon_for(@user), size: '80' %>
-
-      <%= @user.comment %>
+      <h1><%= @user.name %></h1>
+      <div class='col-lg-3 col-md-3'>
+        <%= image_tag icon_for(@user), size: '80' %>
+      </div>
+      <div class='col-lg-9 col-md-9'>
+        <%= @user.comment %>
+      </div>
     </section>
   </aside>
-  <div class="col-md-8">
-    <% if current_user?(@user) %>
+  <% if current_user?(@user) %>
+    <div class="col-md-8 my-settings">
       <%= render "comment_form" %>
       <br>
-      <p>Your token: <code><%= @user.check_token %></code></p>
+      <b>Checkin/Checkout token</b>
+      <p><code><%= @user.check_token || '=== no token ===' %></code>
+      </p>
       <%= render "token_update_form" %>
-    <% end %>
-  </div>
+    </div>
+  <% end %>
 </div>

@@ -12,6 +12,9 @@ module Api
       def destroy
         user = User.find_by(check_token: params[:token])
         status, res = user.attendance.checkout
+        if status == :success
+          announce_last(last_one_user)
+        end
         render json: res, status: status
       end
 
