@@ -53,6 +53,8 @@ class UsersController < ApplicationController
   def index
     @users = User.where(activated: true)
     @user = current_user
+    @user_num = User.where(activated: true).count
+    @checkin_num = Attendance.where(attend: true).count
   end
 
   def destroy

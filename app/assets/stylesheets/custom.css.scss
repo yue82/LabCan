@@ -205,11 +205,35 @@ input {
 }
 
 .user-block {
-  margin-bottom: 20px;
+    margin-bottom: 20px;
+    p{
+        display:inline-block;
+        vertical-align:middle;
+        word-wrap: break-word;
+    }
 }
 
-.user-block p{
-  display:inline-block;
-  vertical-align:middle;
-  word-wrap: break-word;
+/* Information Block */
+.info-box {
+    clear: both;
+    float: left;
+    width: 100%;
+    padding: 10px;
+    margin-top: 20px;
+    @include box_sizing;
+
+    h2{
+        float: left;
+        margin: 0px;
+        margin-bottom: 10px;
+   }
+
+    div {
+        background-color: #eeeeee;
+        border: 1px solid #bbb;
+        border-radius: 4px;
+        padding: 10px;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
 }
