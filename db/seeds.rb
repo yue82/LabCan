@@ -8,6 +8,7 @@
 
 User.create!(name:  "Example User",
              email: "example@railstutorial.org",
+             slack_channel: "@ru",
              password:              "foobar",
              password_confirmation: "foobar",
              admin: true,
@@ -22,6 +23,7 @@ Attendance.create!(user_id: 1)
   password = "password"
   User.create!(name:  name,
                email: email,
+               slack_channel: "@ru",
                password:              password,
                password_confirmation: password,
                activated: true,

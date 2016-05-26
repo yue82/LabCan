@@ -10,7 +10,6 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    puts @user
     if @user.save
       Attendance.new(user_id: @user.id).save
       @user.update_check_token
@@ -88,7 +87,7 @@ class UsersController < ApplicationController
 
   private
   def user_params
-    params.require(:user).permit(:name, :email,
+    params.require(:user).permit(:name, :email,:slack_channel,
                                  :password, :password_confirmation,
                                  :user_icon, :comment, :check_token)
   end

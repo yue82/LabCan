@@ -13,13 +13,9 @@ module AttendancesHelper
     if user
       msg = "窓とベランダの扉を閉めて，エアコンと電気を消して帰ってくださいね！"
       slack = Slack::Incoming::Webhooks.new SLACK_SETTINGS['hook_url'],
-                                            channel: channel_of(user)
+                                            channel: user.slack_channel
       slack.post msg
     end
-  end
-
-  def channel_of(user)
-      SLACK_SETTINGS['default_channel']
   end
 
 end

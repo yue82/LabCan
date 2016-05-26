@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
   validates :email, presence: true, length: { maximum: 255 },
             format: { with: VALID_EMAIL_REGEX },
             uniqueness: { case_sensitive: false }
+  validates :slack_channel, presence: true, length: { maximum: 30 }
   has_secure_password
   validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
   mount_uploader :user_icon, UserIconUploader
