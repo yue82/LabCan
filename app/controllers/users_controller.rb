@@ -64,6 +64,7 @@ class UsersController < ApplicationController
   end
 
   def checkin
+    store_prev_location
     @user = current_user
     status, res = @user.attendance.checkin
     flash[status] = res[:msg]
@@ -71,6 +72,7 @@ class UsersController < ApplicationController
   end
 
   def checkout
+    store_prev_location
     @user = current_user
     status, res = @user.attendance.checkout
     flash[status] = res[:msg]
