@@ -5,28 +5,14 @@ module Api
 
       def new
         user = User.find_by(check_token: params[:token])
-        if !user.attendance.attend
-          msg = { msg: "Welcom to Lab" }
-          status = :success
-          user.attendance.checkin
-        else
-          msg = { msg: "Already checked in" }
-          status = :noupdate
-        end
-        render json: msg, status: status
+        status, res = user.attendance.checkin
+        render json: res, status: status
       end
 
       def destroy
         user = User.find_by(check_token: params[:token])
-        if user.attendance.attend
-          msg = { msg: "Goodbye" }
-          status = :success
-          user.attendance.checkout
-        else
-          msg = { msg: "Already checked out" }
-          status = :noupdate
-        end
-        render json: msg, status: status
+        status, res = user.attendance.checkout
+        render json: res, status: status
       end
 
       private
