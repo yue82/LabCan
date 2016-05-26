@@ -1,11 +1,17 @@
-<div class='col-lg-4 col-md-6 user-block'>
-  <%= image_tag icon_for(user), size: '80' %>
-  <p>
-    <%= link_to user.name, user %>
-    <% if current_user.admin? && !current_user?(user) %>
-      | <%= link_to "delete", user, method: :delete,
-	data: { confirm: "You sure?" } %>
-    <% end %><br>
-    <%= user.comment %>
-  </p>
+<div class='col-lg-4 col-md-4 user-block'>
+  <div class='row'>
+    <div class='col-lg-3 col-md-3'>
+      <%= image_tag icon_for(user), size: '80' %>
+    </div>
+    <div class='col-lg-9 col-md-9'>
+      <%= link_to user.name, user %>
+      <% if current_user.admin? && !current_user?(user) %>
+        | <%= link_to "delete", user, method: :delete,
+	  data: { confirm: "You sure?" } %>
+      <% end %><br>
+      <p>
+        <%= user.comment %>
+      </p>
+    </div>
+  </div>
 </div>

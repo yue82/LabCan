@@ -10,6 +10,7 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
+    puts @user
     if @user.save
       Attendance.new(user_id: @user.id).save
       @user.update_check_token
@@ -48,6 +49,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @user_comment = @user.comment
   end
 
   def index

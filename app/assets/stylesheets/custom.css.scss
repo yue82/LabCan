@@ -135,7 +135,8 @@ aside {
       font-size: 1.4em;
       text-align: left;
       letter-spacing: -1px;
-      margin-bottom: 3px;
+      margin-left: 10px;
+      margin-bottom: 10px;
       margin-top: 0px;
     }
   }
@@ -206,11 +207,21 @@ input {
 
 .user-block {
     margin-bottom: 20px;
-    p{
-        display:inline-block;
-        vertical-align:middle;
-        word-wrap: break-word;
+    img {
+        float: left;
     }
+    p {
+        display: table-cell;
+        vertical-align: middle;
+        margin: 0;
+        vertical-align:middle;
+        overflow: auto;
+    }
+}
+
+/* Index's Header Field */
+.index-head {
+    margin-bottom: 30px;
 }
 
 /* Information Block */
@@ -236,4 +247,9 @@ input {
         margin-top: 20px;
         margin-bottom: 20px;
     }
+}
+
+/* My page settings */
+.my-settings{
+    margin-top:40px;
 }

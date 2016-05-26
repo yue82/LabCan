@@ -1,5 +1,5 @@
 <% provide(:title, 'Lab Room') %>
-<div class='row'>
+<div class='row index-head'>
   <div class='col-lg-4 col-md-4'>
     <h1>
       <%= @checkin_num %> <small>/ <%= @user_num %> in Lab</small></h1>
@@ -13,6 +13,8 @@
     </div>
   </div>
 </div>
-<div class='row'>
-  <%= render @users %>
-</div>
+  <% @users.each_slice(3) do |slice_users| %>
+    <div class='row'>
+      <%= render slice_users %>
+    </div>
+  <% end %>
