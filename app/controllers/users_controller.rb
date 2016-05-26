@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :logged_out_user, only: [:new, :create]
-  before_action :logged_in_user, only: [:show, :edit, :update, :index, :destroy]
+  before_action :logged_in_user, only: [:show, :edit, :update, :index, :destroy, :checkin, :checkout]
   before_action :correct_user, only: [:edit, :update, :update_check_token]
   before_action :admin_user, only: :destroy
 
@@ -62,6 +62,21 @@ class UsersController < ApplicationController
     flash[:success] = "\"" + @user.name + "\" deleted"
     redirect_to users_url
   end
+
+  def checkin
+    @user = current_user
+    status, res = @user.attendance.checkin
+    flash[status] = res[:msg]
+    redirect_back_or users_url
+  end
+
+  def checkout
+    @user = current_user
+    status, res = @user.attendance.checkout
+    flash[status] = res[:msg]
+    redirect_back_or users_url
+  end
+
 
   private
   def user_params
