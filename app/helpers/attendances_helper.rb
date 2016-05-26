@@ -1,4 +1,5 @@
 module AttendancesHelper
+  SLACK_SETTINGS = Rails.application.config_for(:slack_settings)
   def checked_in?
     current_user.attendance.attend
   end
@@ -10,8 +11,15 @@ module AttendancesHelper
 
   def announce_last(user)
     if user
+      msg = "窓とベランダの扉を閉めて，エアコンと電気を消して帰ってくださいね！"
+      slack = Slack::Incoming::Webhooks.new SLACK_SETTINGS['hook_url'],
+                                            channel: channel_of(user)
+      slack.post msg
     end
   end
 
+  def channel_of(user)
+      SLACK_SETTINGS['default_channel']
+  end
 
 end

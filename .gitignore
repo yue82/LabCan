@@ -17,6 +17,7 @@
 /tmp
 
 /config/mail_settings.yml
+/config/slack_settings.yml
 /public/uploads/*
 
 *\#

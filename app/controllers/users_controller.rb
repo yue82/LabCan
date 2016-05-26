@@ -3,7 +3,6 @@ class UsersController < ApplicationController
   before_action :logged_in_user, only: [:show, :edit, :update, :index, :destroy, :checkin, :checkout]
   before_action :correct_user, only: [:edit, :update, :update_check_token]
   before_action :admin_user, only: :destroy
-  include AttendancesHelper
 
   def new
     @user = User.new
@@ -80,11 +79,12 @@ class UsersController < ApplicationController
     store_prev_location
     @user = current_user
     status, res = @user.attendance.checkout
-    announce_last(last_one_user)
+    if status == :success
+      announce_last(last_one_user)
+    end
     flash[status] = res[:msg]
     redirect_back_or users_url
   end
-
 
   private
   def user_params
