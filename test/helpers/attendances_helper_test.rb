@@ -3,13 +3,10 @@ require 'test_helper'
 class AttendancesHelperTest < ActionView::TestCase
   def setup
     @user1 = users(:michael)
-    @user1.update_check_token
     @user1.attendance = attendances(:michael)
     @user2 = users(:archer)
-    @user2.update_check_token
     @user2.attendance = attendances(:archer)
     @user3 = users(:lana)
-    @user3.update_check_token
     @user3.attendance = attendances(:lana)
   end
 

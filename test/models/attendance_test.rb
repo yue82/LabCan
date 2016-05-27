@@ -3,7 +3,6 @@ require 'test_helper'
 class AttendanceTest < ActiveSupport::TestCase
   def setup
     @user = users(:michael)
-    @user.update_check_token
     @user.attendance = attendances(:michael)
   end
 
