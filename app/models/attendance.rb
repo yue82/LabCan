@@ -6,7 +6,7 @@ class Attendance < ActiveRecord::Base
       return :info, { msg: "Already checked in" }
     else
       update_attribute(:attend, true)
-      return :success, { msg: "Welcom to Lab" }
+      return :success, { msg: "Welcome to Lab" }
     end
   end
 
