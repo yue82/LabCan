@@ -7,8 +7,6 @@ module Api
     class AttendancesControllerTest < ActionController::TestCase
       def setup
         @user = users(:michael)
-        @user.update_check_token
-        @user.attendance = attendances(:michael)
       end
 
       test "should get welcome message once when correct user login" do
