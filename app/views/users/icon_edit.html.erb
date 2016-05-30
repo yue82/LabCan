@@ -1,0 +1,39 @@
+<% provide(:form_id, 'edit_user_') %>
+<div class="img-crop">
+  <%= image_tag temp_icon_for(@user), id: "img", class: "img-responsive" %>
+  <%= form_for(@user, html: { multipart: true }) do |f| %>
+    <%= f.hidden_field :user_icon, value: temp_icon_for(@user) %>
+    <%= f.hidden_field :image_x %>
+    <%= f.hidden_field :image_y %>
+    <%= f.hidden_field :image_w %>
+    <%= f.hidden_field :image_h %>
+  <% end %>
+  <%= button_tag  "Update icon image", id: "submit_crop", class: "btn btn-primary" %>
+</div>
+
+<script type="text/javascript">
+ $('#micropost_picture').bind('change', function() {
+   var size_in_megabytes = this.files[0].size/1024/1024;
+   if (size_in_megabytes > 5) {
+     alert('Maximum file size is 5MB. Please choose a smaller file.');
+   }
+ });
+</script>
+
+<script type="text/javascript">
+ var $image = $('.img-crop > img'),replaced;
+ $('#img').cropper({
+   aspectRatio: 4 / 4
+ });
+</script>
+
+<script type="text/javascript">
+ $('#submit_crop').on('click', function(){
+   var data = $('#img').cropper('getData');
+   document.getElementById("user_image_x").value = Math.round(data.x);
+   document.getElementById("user_image_y").value = Math.round(data.y);
+   document.getElementById("user_image_w").value = Math.round(data.width);
+   document.getElementById("user_image_h").value = Math.round(data.height);
+   $("#<%= yield(:form_id) %><%= @user.id %>").submit();
+ });
+</script>

@@ -11,6 +11,10 @@ module UsersHelper
     user.user_icon.url || '/default/user_icon.jpg'
   end
 
+  def temp_icon_for(user)
+    user.temp_icon.url || '/default/user_icon.jpg'
+  end
+
   def name_for(user)
     logged_in? ? user.name : 'Guest'
   end
