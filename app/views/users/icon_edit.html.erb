@@ -2,7 +2,7 @@
 <div class="row">
   <div class="col-md-8 col-md-offset-2 crop-form">
     <div class="img-crop">
-      <%= image_tag <!--TODO: -->emp_icon_for(@user), id: "img", class: "img-responsive" %>
+      <%= image_tag temp_icon_for(@user), id: "img", class: "img-responsive" %>
       <%= form_for(@user, html: { multipart: true }) do |f| %>
         <%= f.hidden_field :user_icon, value: temp_icon_for(@user) %>
         <%= f.hidden_field :image_x %>

@@ -1,6 +1,3 @@
-<%= javascript_tag do %>
- defaultPreviewContent: '<%= image_tag icon_for(@user), size: '160' %>',
-<% end %>
 <span class="picture">
   <%= form_for(@user, html: { multipart: true }) do |f| %>
     <%= f.label "Icon Image" %>
@@ -18,20 +15,20 @@
 </script>
 
 <script>
-   $("#user_temp_icon").fileinput({
-     showClose: false,
-     showCaption: false,
-     previewFileType: "image",
-     browseClass: "btn btn-success fi-browse-btn",
-     browseLabel: "New Icon",
-     browseIcon: "<i class=\"glyphicon glyphicon-picture\"></i> ",
-     removeClass: "btn btn-danger fi-delete-btn",
-     removeLabel: "Reset",
-     removeIcon: "<i class=\"glyphicon glyphicon-trash\"></i> ",
-     uploadClass: "btn btn-info fi-upload-btn",
-     uploadLabel: "Edit",
-     uploadIcon: "<i class=\"glyphicon glyphicon-upload\"></i> ",
-     defaultPreviewContent: '<%= image_tag icon_for(@user), size: '160' %>',
-     allowedFileExtensions: ['jpg', 'jpeg', 'png', 'gif']
-   });
+ $("#user_temp_icon").fileinput({
+   showClose: false,
+   showCaption: false,
+   previewFileType: "image",
+   browseClass: "btn btn-success fi-browse-btn",
+   browseLabel: "New Icon",
+   browseIcon: "<i class=\"glyphicon glyphicon-picture\"></i> ",
+   removeClass: "btn btn-danger fi-delete-btn",
+   removeLabel: "Reset",
+   removeIcon: "<i class=\"glyphicon glyphicon-trash\"></i> ",
+   uploadClass: "btn btn-info fi-upload-btn",
+   uploadLabel: "Edit",
+   uploadIcon: "<i class=\"glyphicon glyphicon-upload\"></i> ",
+   defaultPreviewContent: '<%= image_tag icon_for(@user), size: '160' %>',
+   allowedFileExtensions: ['jpg', 'jpeg', 'png', 'gif']
+ });
 </script>
