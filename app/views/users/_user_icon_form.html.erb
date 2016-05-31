@@ -1,10 +1,11 @@
-<%= image_tag icon_for(@user), size: '80' %>
-<%= form_for(@user, html: { multipart: true }) do |f| %>
-  <span class="picture">
+<span class="picture">
+  <%= image_tag icon_for(@user), size: '80' %>
+  <%= form_for(@user, html: { multipart: true }) do |f| %>
+    <%= f.label "Icon Image" %>
     <%= f.file_field :temp_icon, accept: 'image/jpeg,image/gif,image/png' %>
-  </span>
-  <%= f.submit "Go to icon editor", class: "btn btn-primary" %>
-<% end %>
+    <%= f.submit "Go to icon editor", class: "btn btn-primary" %>
+  <% end %>
+</span>
 
 <script type="text/javascript">
  $('#micropost_picture').bind('change', function() {

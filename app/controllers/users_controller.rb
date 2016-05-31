@@ -25,11 +25,10 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    if !user_params
-      flash[:danger] = "Fail"
+    if !params[:user]
+      flash[:danger] = "No updates"
       render 'edit'
-    end
-    if user_params[:temp_icon]
+    elsif user_params[:temp_icon]
       if @user.update_attribute(:temp_icon, user_params[:temp_icon])
         render 'icon_edit'
       else
