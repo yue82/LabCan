@@ -19,21 +19,19 @@
 
 <script>
    $("#user_temp_icon").fileinput({
-     overwriteInitial: true,
      showClose: false,
      showCaption: false,
      previewFileType: "image",
-     browseClass: "btn btn-success fileinput-browse-btn",
-     browseLabel: "Pick Image",
+     browseClass: "btn btn-success fi-browse-btn",
+     browseLabel: "New Icon",
      browseIcon: "<i class=\"glyphicon glyphicon-picture\"></i> ",
-     removeClass: "btn btn-danger",
-     removeLabel: "Delete",
+     removeClass: "btn btn-danger fi-delete-btn",
+     removeLabel: "Reset",
      removeIcon: "<i class=\"glyphicon glyphicon-trash\"></i> ",
-     uploadClass: "btn btn-info",
-     uploadLabel: "Upload",
+     uploadClass: "btn btn-info fi-upload-btn",
+     uploadLabel: "Edit",
      uploadIcon: "<i class=\"glyphicon glyphicon-upload\"></i> ",
      defaultPreviewContent: '<%= image_tag icon_for(@user), size: '160' %>',
-     layoutTemplates: {main2: '{preview}  {upload} {remove} {browse}'},
      allowedFileExtensions: ['jpg', 'jpeg', 'png', 'gif']
    });
 </script>

@@ -278,7 +278,20 @@ input {
 }
 
 .file-input.has-error {
-  .fileinput-upload-button {
-    display: none;
-  }
+    .fi-browse-btn {
+        display: none;
+    }
+    .fi-upload-btn {
+        display: none;
+    }
+}
+
+/* cropper */
+.crop-form{
+    text-align: center;
+    .img-crop {
+        margin: 0 auto;
+        height: 400px;
+        width: 400px;
+    }
 }
