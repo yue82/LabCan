@@ -255,3 +255,30 @@ input {
 .my-settings{
     margin-top:40px;
 }
+
+/* file input */
+
+.file-input {
+    text-align: center;
+    .file-preview {
+        border: none;
+    }
+
+}
+
+.file-preview-thumbnails {
+    .file-preview-frame {
+        box-shadow: none;
+        margin: auto;
+        border: none;
+        padding: 0;
+        text-align: center;
+        float: none;
+    }
+}
+
+.file-input.has-error {
+  .fileinput-upload-button {
+    display: none;
+  }
+}

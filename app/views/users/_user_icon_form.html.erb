@@ -1,17 +1,39 @@
+<%= javascript_tag do %>
+ defaultPreviewContent: '<%= image_tag icon_for(@user), size: '160' %>',
+<% end %>
 <span class="picture">
-  <%= image_tag icon_for(@user), size: '80' %>
   <%= form_for(@user, html: { multipart: true }) do |f| %>
     <%= f.label "Icon Image" %>
     <%= f.file_field :temp_icon, accept: 'image/jpeg,image/gif,image/png' %>
-    <%= f.submit "Go to icon editor", class: "btn btn-primary" %>
   <% end %>
 </span>
 
 <script type="text/javascript">
- $('#micropost_picture').bind('change', function() {
+ $('#user_temp_icon').bind('change', function() {
    var size_in_megabytes = this.files[0].size/1024/1024;
    if (size_in_megabytes > 5) {
      alert('Maximum file size is 5MB. Please choose a smaller file.');
    }
  });
+</script>
+
+<script>
+   $("#user_temp_icon").fileinput({
+     overwriteInitial: true,
+     showClose: false,
+     showCaption: false,
+     previewFileType: "image",
+     browseClass: "btn btn-success fileinput-browse-btn",
+     browseLabel: "Pick Image",
+     browseIcon: "<i class=\"glyphicon glyphicon-picture\"></i> ",
+     removeClass: "btn btn-danger",
+     removeLabel: "Delete",
+     removeIcon: "<i class=\"glyphicon glyphicon-trash\"></i> ",
+     uploadClass: "btn btn-info",
+     uploadLabel: "Upload",
+     uploadIcon: "<i class=\"glyphicon glyphicon-upload\"></i> ",
+     defaultPreviewContent: '<%= image_tag icon_for(@user), size: '160' %>',
+     layoutTemplates: {main2: '{preview}  {upload} {remove} {browse}'},
+     allowedFileExtensions: ['jpg', 'jpeg', 'png', 'gif']
+   });
 </script>
