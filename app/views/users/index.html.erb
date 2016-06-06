@@ -1,0 +1,22 @@
+<% provide(:title, 'Lab Room') %>
+<div class='row index-head'>
+  <div class='col-lg-4 col-md-4'>
+    <h1>
+      <%= @checkin_num %> <small>/ <%= @user_num %> in Lab</small></h1>
+  </div>
+  <div class='col-lg-8 col-md-8'>
+    <div class='info-box'>
+      <h2>Informations</h2>
+      <div>
+        2016/05/26 - information (pending)
+      </div>
+    </div>
+  </div>
+</div>
+<div class='container'>
+  <% @users.each_slice(3) do |slice_users| %>
+    <div class='row'>
+      <%= render slice_users %>
+    </div>
+  <% end %>
+</div>

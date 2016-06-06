@@ -1,5 +1,22 @@
 Rails.application.routes.draw do
-  get 'static_pages/home'
+  root            'static_pages#home'
+  get    'signup' => 'users#new'
+  get    'checkin' => 'users#checkin'
+  get    'checkout' => 'users#checkout'
+  get    'login'  => 'sessions#new'
+  post   'login'  => 'sessions#create'
+  delete 'logout' => 'sessions#destroy'
+
+  namespace :api, { format: 'json' } do
+    namespace :v1 do
+      get    'checkin' => 'attendances#new'
+      get    'checkout' => 'attendances#destroy'
+    end
+  end
+
+  resources :users
+  resources :account_activations, only: [:edit]
+  resources :password_resets,     only: [:new, :create, :edit, :update]
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
