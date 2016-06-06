@@ -1,15 +1,11 @@
 # encoding: utf-8
 
-class UserIconUploader < CarrierWave::Uploader::Base
+class TempIconUploader < CarrierWave::Uploader::Base
 
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
   include CarrierWave::MiniMagick
-  process :crop
-
-  version :gray do
-    process :convert_to_grayscale
-  end
+  process resize_to_limit: [400, 400]
 
   # Choose what kind of storage to use for this uploader:
   storage :file
@@ -52,28 +48,5 @@ class UserIconUploader < CarrierWave::Uploader::Base
   # def filename
   #   "something.jpg" if original_filename
   # end
-
-  private
-  def crop
-    crop_x = model.image_x.to_i
-    crop_y = model.image_y.to_i
-    crop_w = model.image_w.to_i
-    crop_h = model.image_h.to_i
-    return if !([crop_x, crop_y, crop_w, crop_h].all?)
-    manipulate! do |img|
-      img.crop "#{crop_w}x#{crop_h}+#{crop_x}+#{crop_y}"
-      img = yield(img) if block_given?
-      img
-    end
-  end
-
-
-  def convert_to_grayscale
-    manipulate! do |img|
-      img.colorspace("Gray")
-      img = yield(img) if block_given?
-      img
-    end
-  end
 
 end

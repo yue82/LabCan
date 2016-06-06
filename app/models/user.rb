@@ -1,6 +1,6 @@
-require 'length_with_wide_char_validator'
 class User < ActiveRecord::Base
   attr_accessor :remember_token, :activation_token, :reset_token
+  attr_accessor :image_x, :image_y, :image_w, :image_h
   before_save   :downcase_email
   before_create :create_activation_digest, :create_attendance, :create_check_token
   validates :name, presence: true, length: { maximum: 30 }
@@ -12,6 +12,7 @@ class User < ActiveRecord::Base
   has_secure_password
   validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
   mount_uploader :user_icon, UserIconUploader
+  mount_uploader :temp_icon, TempIconUploader
   validate :user_icon_size
   validates :comment, length: { maximum: 140 }
   has_one :attendance
@@ -68,6 +69,12 @@ class User < ActiveRecord::Base
     reset_sent_at < 2.hours.ago
   end
 
+  def update_image_infos(params)
+    self.image_x = params[:image_x]
+    self.image_y = params[:image_y]
+    self.image_w = params[:image_w]
+    self.image_h = params[:image_h]
+  end
 
   private
   def downcase_email

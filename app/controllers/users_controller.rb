@@ -25,7 +25,26 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    if user_params[:check_token]
+    if !params[:user]
+      flash[:danger] = "No updates"
+      render 'edit'
+    elsif user_params[:temp_icon]
+      if @user.update_attribute(:temp_icon, user_params[:temp_icon])
+        render 'icon_edit'
+      else
+        flash[:danger] = "Fail"
+        render 'edit'
+      end
+    elsif user_params[:user_icon]
+      @user.update_image_infos(user_params)
+      if @user.update_attribute(:user_icon, @user.temp_icon)
+        flash[:success] = "Icon updated"
+        redirect_to @user
+      else
+        flash[:danger] = "Fail"
+        render 'icon_edit'
+      end
+    elsif user_params[:check_token]
       @user.update_check_token
       flash[:success] = "Token updated"
       redirect_to @user
@@ -41,6 +60,20 @@ class UsersController < ApplicationController
       redirect_to @user
     else
       render 'edit'
+    end
+  end
+
+  def icon_edit
+    @user = User.find(params[:id])
+  end
+
+  def icon_update
+    @user = User.find(params[:id])
+    if @user.update_attributes(user_params)
+      flash[:success] = "Icon updated"
+      redirect_to @user
+    else
+      render 'icon_edit'
     end
   end
 
@@ -87,7 +120,8 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:name, :email,:slack_channel,
                                  :password, :password_confirmation,
-                                 :user_icon, :comment, :check_token)
+                                 :temp_icon, :comment, :check_token,
+                                 :user_icon, :image_x, :image_y, :image_w, :image_h)
   end
 
   def logged_in_user

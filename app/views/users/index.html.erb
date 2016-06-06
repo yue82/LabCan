@@ -13,8 +13,10 @@
     </div>
   </div>
 </div>
+<div class='container'>
   <% @users.each_slice(3) do |slice_users| %>
     <div class='row'>
       <%= render slice_users %>
     </div>
   <% end %>
+</div>
