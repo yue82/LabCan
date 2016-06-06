@@ -1,4 +1,4 @@
-<span class="picture">
+<span class="picture" id="picture">
   <%= form_for(@user, html: { multipart: true }) do |f| %>
     <%= f.label "Icon Image" %>
     <%= f.file_field :temp_icon, accept: 'image/jpeg,image/gif,image/png' %>
@@ -31,4 +31,9 @@
    defaultPreviewContent: '<%= image_tag icon_for(@user), size: '160' %>',
    allowedFileExtensions: ['jpg', 'jpeg', 'png', 'gif']
  });
+</script>
+
+<script>
+ elem = document.getElementById("picture");
+ elem.classList.add("default")
 </script>
