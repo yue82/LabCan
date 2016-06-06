@@ -1,7 +1,11 @@
 <div class='col-lg-4 col-md-4 user-block'>
   <div class='row'>
     <div class='col-lg-3 col-md-3'>
-      <%= image_tag icon_for(user), size: '80' %>
+      <% if user.attendance.attend %>
+        <%= image_tag icon_for(user), size: '80' %>
+      <% else %>
+        <%= image_tag gray_icon_for(user), size: '80' %>
+      <% end %>
     </div>
     <div class='col-lg-9 col-md-9 user-info'>
       <%= link_to user.name, user %>

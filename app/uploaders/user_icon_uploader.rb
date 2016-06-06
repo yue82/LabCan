@@ -7,6 +7,10 @@ class UserIconUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
   process :crop
 
+  version :gray do
+    process :convert_to_grayscale
+  end
+
   # Choose what kind of storage to use for this uploader:
   storage :file
   # storage :fog
@@ -58,6 +62,15 @@ class UserIconUploader < CarrierWave::Uploader::Base
     return if !([crop_x, crop_y, crop_w, crop_h].all?)
     manipulate! do |img|
       img.crop "#{crop_w}x#{crop_h}+#{crop_x}+#{crop_y}"
+      img = yield(img) if block_given?
+      img
+    end
+  end
+
+
+  def convert_to_grayscale
+    manipulate! do |img|
+      img.colorspace("Gray")
       img = yield(img) if block_given?
       img
     end
